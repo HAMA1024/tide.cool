@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply text-gray-200 bg-gray-900;
+  }
+}
+
+@layer components {
+  .hero-gradient {
+    background: linear-gradient(135deg, rgba(17, 24, 39, 0.95), rgba(29, 78, 216, 0.8)),
+                url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&q=80') center/cover;
+  }
+
+  .features-gradient {
+    background: linear-gradient(135deg, rgba(17, 24, 39, 0.97), rgba(55, 65, 81, 0.9)),
+                url('https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?auto=format&q=80') center/cover;
+  }
+
+  .cta-gradient {
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.9), rgba(29, 78, 216, 0.95)),
+                url('https://images.unsplash.com/photo-1510915228340-29c85a43dcfe?auto=format&q=80') center/cover;
+  }
+}
