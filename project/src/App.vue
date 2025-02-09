@@ -1,21 +1,21 @@
 <template>
   <div id="website" class="min-h-screen bg-gray-900">
-
+    <RouterView>  </RouterView>
     <nav class="bg-[#0A0B2E]/80 backdrop-blur-sm border-b border-gray-700 sticky top-0 z-40">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
           <div class="flex items-center">
             <div class="flex-shrink-0 flex items-center">
               <h1 class="text-2xl font-bold text-white">
-                <img id="logo" :src="logoUrl" alt="Tide.cool Logo" />
+                <img id="logo" src="./assets/tide-logo.png" alt="Tide.cool Logo" />
               </h1>
             </div>
             <div class="hidden md:flex md:ml-10 space-x-8">
-              <a href="https://huangs-organization-8.gitbook.io/tide.cool" target="_blank" class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Docs</a>
-              <a href="#" class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Channels</a>
-              <router-link to="/pricing" class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Pricing</router-link>
-              <a href="#" class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">FAQ</a>
-              <a href @click="goToWorkspace" class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Workspace</a>
+              <a href="https://huangs-organization-8.gitbook.io/tide.cool" target="_blank" class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">{{ $t('nav.docs') }}</a>
+              <a href="#" class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">{{ $t('nav.channels') }}</a>
+              <router-link to="/pricing" class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">{{ $t('nav.pricing') }}</router-link>
+              <a href="#" class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">{{ $t('nav.faq') }}</a>
+              <a href @click="goToWorkspace" class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">{{ $t('nav.workspace') }}</a>
             </div>
           </div>
           <div class="flex items-center">
@@ -29,12 +29,12 @@
                 </button>
                 <div v-if="isUserMenuOpen" class="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-gray-700 ring-1 ring-black ring-opacity-5">
                   <div class="py-1">
-                    <a @click="signOut" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-600 cursor-pointer">退出登录</a>
+                    <a @click="signOut" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-600 cursor-pointer">{{ $t('nav.signOut') }}</a>
                   </div>
                 </div>
               </div>
             </template>
-            <router-link v-else to="/signin" class="text-gray-300 hover:text-white px-3 py-2"> Sign In </router-link>
+            <router-link v-else to="/signin" class="text-gray-300 hover:text-white px-3 py-2">{{ $t('nav.signIn') }}</router-link>
             <!-- Mobile menu button -->
             <button @click="isOpen = !isOpen" class="md:hidden ml-2 p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700">
               <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -49,7 +49,7 @@
       <!-- Mobile menu -->
       <div v-if="isOpen" class="md:hidden">
         <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-          <a href="https://huangs-organization-8.gitbook.io/tide.cool" target="_blank" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Docs</a>
+          <a href="https://huangs-organization-8.gitbook.io/tide.cool" target="_blank" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">{{ $t('nav.docs') }}</a>
           <a href="#" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Channels</a>
           <router-link to="/pricing" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Pricing</router-link>
           <a href="#" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">FAQ</a>
@@ -57,20 +57,28 @@
       </div>
      
     </nav>
-    <RouterView></RouterView>
+ 
 
     <main>
       <!-- Hero Section -->
       <div class="hero-gradient relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 relative">
-          <div class="text-center">
+        <div id = "bg1" class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10"></div>
+        <div id = "bg2" class="absolute inset-0 md:left-1/2">
+          <img 
+            src="./assets/hero-bg.png" 
+            alt="" 
+            class="w-full h-full opacity-20 object-cover md:object-contain md:object-right"
+          />
+        </div>
+        <div id = "hero-content" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 relative">
+          <div class="md:w-2/3 text-left">
             <h1 class="text-5xl font-bold tracking-tight text-white sm:text-6xl">
-              Your AI Assistant for
-              <span class="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">Everything</span>
+              {{ $t('hero.title') }}
+              <span class="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+                {{ $t('hero.titleHighlight') }}
+              </span>
             </h1>
-            <p class="mt-6 text-xl text-gray-300 max-w-2xl mx-auto">
-              Experience the power of AI to streamline your workflow, boost productivity, and unlock new possibilities.
+            <p class="mt-6 text-xl text-gray-300 max-w-2xl" v-html="$t('hero.description').replace('\n', '<br/>')">
             </p>
           </div>
         </div>
@@ -80,27 +88,33 @@
       <div class="features-gradient py-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="text-center">
-            <h2 class="text-3xl font-bold text-white">Features that set us apart</h2>
-            <p class="mt-4 text-gray-300">Discover what makes our AI assistant unique</p>
+            <h2 class="text-3xl font-bold text-white">Features </h2>
+            <p class="mt-4 text-gray-300">What makes our AI Agents magnificent</p>
           </div>
 
-          <div class="mt-20 grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-3">
+          <div class="mt-20 grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
             <div class="flex flex-col items-center">
               <div class="rounded-lg bg-gray-900/50 backdrop-blur-sm p-6 shadow-lg border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300">
-                <h3 class="text-xl font-semibold text-white">Natural Language Processing</h3>
-                <p class="mt-4 text-gray-300">Communicate naturally with our AI just like you would with a human.</p>
+                <h3 class="text-xl font-semibold text-white">{{ $t('features.cards.nlp.title') }}</h3>
+                <p class="mt-4 text-gray-300">{{ $t('features.cards.nlp.description') }}</p>
               </div>
             </div>
             <div class="flex flex-col items-center">
               <div class="rounded-lg bg-gray-900/50 backdrop-blur-sm p-6 shadow-lg border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300">
-                <h3 class="text-xl font-semibold text-white">Smart Automation</h3>
-                <p class="mt-4 text-gray-300">Automate repetitive tasks and focus on what matters most.</p>
+                <h3 class="text-xl font-semibold text-white">{{ $t('features.cards.automation.title') }}</h3>
+                <p class="mt-4 text-gray-300">{{ $t('features.cards.automation.description') }}</p>
               </div>
             </div>
             <div class="flex flex-col items-center">
               <div class="rounded-lg bg-gray-900/50 backdrop-blur-sm p-6 shadow-lg border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300">
-                <h3 class="text-xl font-semibold text-white">Personalized Learning</h3>
-                <p class="mt-4 text-gray-300">Our AI adapts to your needs and learns from your interactions.</p>
+                <h3 class="text-xl font-semibold text-white">{{ $t('features.cards.learning.title') }}</h3>
+                <p class="mt-4 text-gray-300">{{ $t('features.cards.learning.description') }}</p>
+              </div>
+            </div>
+            <div class="flex flex-col items-center">
+              <div class="rounded-lg bg-gray-900/50 backdrop-blur-sm p-6 shadow-lg border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300">
+                <h3 class="text-xl font-semibold text-white">{{ $t('features.cards.security.title') }}</h3>
+                <p class="mt-4 text-gray-300">{{ $t('features.cards.security.description') }}</p>
               </div>
             </div>
           </div>
@@ -172,7 +186,7 @@
               <a href="#" class="text-gray-400 hover:text-gray-300">
                 <span class="sr-only">Telegram</span>
                 <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                  <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.041-.106a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
                 </svg>
               </a>
               <a href="#" class="text-gray-400 hover:text-gray-300">
@@ -191,6 +205,14 @@
         </div>
       </div>
     </footer>
+
+    <!-- 添加语言切换按钮 -->
+    <div class="fixed top-4 right-4 z-50">
+      <select v-model="$i18n.locale" class="bg-gray-800 text-white rounded px-2 py-1">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+      </select>
+    </div>
   </div>
 </template>
 
@@ -199,7 +221,7 @@ import { ref } from 'vue';
 import { useUserStore } from './stores/user';
 import { getAuth, signOut as firebaseSignOut } from 'firebase/auth';
 import { useRouter } from 'vue-router';
-import logoUrl from './assets/tide-logo.png'
+
 
 const userStore = useUserStore();
 const router = useRouter();
