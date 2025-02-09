@@ -1,14 +1,14 @@
 <template>
-  <div id="app">
-    <router-view></router-view>
-  </div>
   <div id="website" class="min-h-screen bg-gray-900">
-    <nav class="bg-gray-800/80 backdrop-blur-sm border-b border-gray-700 sticky top-0 z-50">
+
+    <nav class="bg-[#0A0B2E]/80 backdrop-blur-sm border-b border-gray-700 sticky top-0 z-40">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
           <div class="flex items-center">
             <div class="flex-shrink-0 flex items-center">
-              <h1 class="text-2xl font-bold text-white">TIDE</h1>
+              <h1 class="text-2xl font-bold text-white">
+                <img id="logo" :src="logoUrl" alt="Tide.cool Logo" />
+              </h1>
             </div>
             <div class="hidden md:flex md:ml-10 space-x-8">
               <a href="https://huangs-organization-8.gitbook.io/tide.cool" target="_blank" class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Docs</a>
@@ -57,6 +57,7 @@
       </div>
      
     </nav>
+    <RouterView></RouterView>
 
     <main>
       <!-- Hero Section -->
@@ -191,7 +192,6 @@
       </div>
     </footer>
   </div>
-
 </template>
 
 <script setup>
@@ -199,6 +199,7 @@ import { ref } from 'vue';
 import { useUserStore } from './stores/user';
 import { getAuth, signOut as firebaseSignOut } from 'firebase/auth';
 import { useRouter } from 'vue-router';
+import logoUrl from './assets/tide-logo.png'
 
 const userStore = useUserStore();
 const router = useRouter();

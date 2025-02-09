@@ -1,0 +1,8 @@
+#logo {
+  width: 200px;
+  height: 80px;
+  object-fit: contain;
+  filter: brightness(0) invert(1); /* 确保 logo 显示为白色 */
+}
+
+/* 移除旧的 .logo 相关样式，因为不再使用 */ 
