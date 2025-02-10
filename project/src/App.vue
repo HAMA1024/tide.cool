@@ -1,21 +1,49 @@
 <template>
-  <div id="website" class="min-h-screen bg-gray-900">
+  <div id="website" class="min-h-screen bg-[#0B1B2B]">
+    <!-- 添加背景动效 -->
+    <!--div class="fixed inset-0 z-0">
+      <div class="absolute inset-0 bg-[#0B1B2B]">
+        <div class="absolute top-0 -left-4 w-96 h-96 bg-[#00E5B3] opacity-10 blur-[100px] animate-pulse"></div>
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-[#164B7A] opacity-10 blur-[100px] animate-pulse delay-1000"></div>
+      </div>
+    </div-->
+
     <RouterView>  </RouterView>
-    <nav class="bg-[#0A0B2E]/80 backdrop-blur-sm border-b border-gray-700 sticky top-0 z-40">
+    <nav class="bg-black/80 backdrop-blur-md border-b border-[#1E3A5F]/50 sticky top-0 z-40">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
+          <!-- Logo区域添加光效 -->
           <div class="flex items-center">
-            <div class="flex-shrink-0 flex items-center">
-              <h1 class="text-2xl font-bold text-white">
-                <img id="logo" src="./assets/tide-logo.png" alt="Tide.cool Logo" />
-              </h1>
+            <div class="flex-shrink-0 flex items-center relative group -ml-5">
+              <div class="absolute inset-0 bg-[#00E5B3] opacity-0 group-hover:opacity-20 blur-xl transition-all duration-500"></div>
+              <img id="logo" src="./assets/tide-logo.png" alt="Tide Logo" class="relative z-10" />
             </div>
-            <div class="hidden md:flex md:ml-10 space-x-8">
-              <a href="https://huangs-organization-8.gitbook.io/tide.cool" target="_blank" class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">{{ $t('nav.docs') }}</a>
-              <a href="#" class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">{{ $t('nav.channels') }}</a>
-              <router-link to="/pricing" class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">{{ $t('nav.pricing') }}</router-link>
-              <a href="#" class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">{{ $t('nav.faq') }}</a>
-              <a href @click="goToWorkspace" class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">{{ $t('nav.workspace') }}</a>
+            <!-- 调整 TIDE X 文字位置 -->
+            <span class="text-white text-xl font-nunito font-bold -ml-1">
+              TIDE <span class="text-[#00E5B3]">X</span>
+            </span>
+            <!-- 语言选择器移到这里，调整尺寸 -->
+            <div class="relative ml-4">
+              <select 
+                v-model="$i18n.locale" 
+                class="bg-black/80 text-[#00E5B3] rounded px-2 py-1 border border-[#00E5B3] hover:bg-[#00E5B3]/10 transition-colors duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#00E5B3]/50 appearance-none pl-7 text-sm h-8"
+              >
+                <option value="en">🇺🇸</option>
+                <option value="zh">🇨🇳</option>
+              </select>
+              <div class="absolute inset-y-0 left-2 flex items-center pointer-events-none text-[#00E5B3]">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+                </svg>
+              </div>
+            </div>
+            <!-- 调整菜单位置 -->
+            <div class="hidden md:flex md:ml-[60px] space-x-8">
+              <a href="https://huangs-organization-8.gitbook.io/tide.cool" target="_blank" class="nav-link">{{ $t('nav.docs') }}</a>
+              <a href="#" class="nav-link">{{ $t('nav.channels') }}</a>
+              <router-link to="/pricing" class="nav-link">{{ $t('nav.pricing') }}</router-link>
+              <a href="#" class="nav-link">{{ $t('nav.faq') }}</a>
+              <a href @click="goToWorkspace" class="nav-link">{{ $t('nav.workspace') }}</a>
             </div>
           </div>
           <div class="flex items-center">
@@ -34,7 +62,13 @@
                 </div>
               </div>
             </template>
-            <router-link v-else to="/signin" class="text-gray-300 hover:text-white px-3 py-2">{{ $t('nav.signIn') }}</router-link>
+            <router-link 
+              v-else 
+              to="/signin" 
+              class="bg-[#00E5B3] text-black font-medium px-4 py-2 rounded hover:bg-[#00E5B3]/90 transition-colors duration-300 ml-4"
+            >
+              {{ $t('nav.signIn') }}
+            </router-link>
             <!-- Mobile menu button -->
             <button @click="isOpen = !isOpen" class="md:hidden ml-2 p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700">
               <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -62,30 +96,36 @@
     <main>
       <!-- Hero Section -->
       <div class="hero-gradient relative overflow-hidden">
-        <div id = "bg1" class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10"></div>
-        <div id = "bg2" class="absolute inset-0 md:left-1/2">
-          <img 
-            src="./assets/hero-bg.png" 
-            alt="" 
-            class="w-full h-full opacity-20 object-cover md:object-contain md:object-right"
-          />
+        <!-- 背景渐变和图片叠加 -->
+        <div class="absolute inset-0">
+          <div class="absolute inset-0 bg-gradient-to-br from-[#0B1B2B] via-[#0E2A47] to-[#0F2D4A] opacity-90"></div>
+          <div class="absolute inset-0">
+            <img 
+              src="./assets/hero-bg.png" 
+              alt="" 
+              class="w-full h-full object-cover opacity-30 mix-blend-overlay"
+            />
+          </div>
         </div>
-        <div id = "hero-content" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 relative">
+
+        <!-- Hero 内容 -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 relative z-10">
           <div class="md:w-2/3 text-left">
             <h1 class="text-5xl font-bold tracking-tight text-white sm:text-6xl">
               {{ $t('hero.title') }}
-              <span class="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+              <span class="bg-gradient-to-r from-[#00E5B3] to-[#00B392] bg-clip-text text-transparent">
                 {{ $t('hero.titleHighlight') }}
               </span>
             </h1>
-            <p class="mt-6 text-xl text-gray-300 max-w-2xl" v-html="$t('hero.description').replace('\n', '<br/>')">
+            <p class="mt-6 text-xl text-gray-300 max-w-2xl animate-fade-in">
+              {{ $t('hero.description') }}
             </p>
           </div>
         </div>
       </div>
 
       <!-- Features Section -->
-      <div class="features-gradient py-24">
+      <div class="features-gradient py-24 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="text-center">
             <h2 class="text-3xl font-bold text-white">Features </h2>
@@ -93,27 +133,36 @@
           </div>
 
           <div class="mt-20 grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
-            <div class="flex flex-col items-center">
-              <div class="rounded-lg bg-gray-900/50 backdrop-blur-sm p-6 shadow-lg border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300">
-                <h3 class="text-xl font-semibold text-white">{{ $t('features.cards.nlp.title') }}</h3>
+            <!-- 使用feature-card类，但移除内联style -->
+            <div class="feature-card">
+              <div class="relative z-10">
+                <h3 class="text-xl font-semibold text-white group-hover:text-[#00E5B3] transition-colors duration-300">
+                  {{ $t('features.cards.nlp.title') }}
+                </h3>
                 <p class="mt-4 text-gray-300">{{ $t('features.cards.nlp.description') }}</p>
               </div>
             </div>
-            <div class="flex flex-col items-center">
-              <div class="rounded-lg bg-gray-900/50 backdrop-blur-sm p-6 shadow-lg border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300">
-                <h3 class="text-xl font-semibold text-white">{{ $t('features.cards.automation.title') }}</h3>
+            <div class="feature-card">
+              <div class="relative z-10">
+                <h3 class="text-xl font-semibold text-white group-hover:text-[#00E5B3] transition-colors duration-300">
+                  {{ $t('features.cards.automation.title') }}
+                </h3>
                 <p class="mt-4 text-gray-300">{{ $t('features.cards.automation.description') }}</p>
               </div>
             </div>
-            <div class="flex flex-col items-center">
-              <div class="rounded-lg bg-gray-900/50 backdrop-blur-sm p-6 shadow-lg border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300">
-                <h3 class="text-xl font-semibold text-white">{{ $t('features.cards.learning.title') }}</h3>
+            <div class="feature-card">
+              <div class="relative z-10">
+                <h3 class="text-xl font-semibold text-white group-hover:text-[#00E5B3] transition-colors duration-300">
+                  {{ $t('features.cards.learning.title') }}
+                </h3>
                 <p class="mt-4 text-gray-300">{{ $t('features.cards.learning.description') }}</p>
               </div>
             </div>
-            <div class="flex flex-col items-center">
-              <div class="rounded-lg bg-gray-900/50 backdrop-blur-sm p-6 shadow-lg border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300">
-                <h3 class="text-xl font-semibold text-white">{{ $t('features.cards.security.title') }}</h3>
+            <div class="feature-card">
+              <div class="relative z-10">
+                <h3 class="text-xl font-semibold text-white group-hover:text-[#00E5B3] transition-colors duration-300">
+                  {{ $t('features.cards.security.title') }}
+                </h3>
                 <p class="mt-4 text-gray-300">{{ $t('features.cards.security.description') }}</p>
               </div>
             </div>
@@ -122,7 +171,7 @@
       </div>
 
       <!-- CTA Section -->
-      <div class="cta-gradient">
+      <div class="cta-gradient bg-gradient-to-br from-[#0E2A47] via-[#164B7A] to-[#0F2D4A]">
         <div class="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
           <div class="text-center">
             <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
@@ -205,14 +254,6 @@
         </div>
       </div>
     </footer>
-
-    <!-- 添加语言切换按钮 -->
-    <div class="fixed top-4 right-4 z-50">
-      <select v-model="$i18n.locale" class="bg-gray-800 text-white rounded px-2 py-1">
-        <option value="en">English</option>
-        <option value="zh">中文</option>
-      </select>
-    </div>
   </div>
 </template>
 
@@ -252,3 +293,65 @@ const goToWorkspace = () => {
 
 
 </script>
+
+<style>
+/* 全局样式 */
+:root {
+  --primary-color: #00E5B3;
+  --background-dark: #0B1B2B;
+  --background-light: #0E2A47;
+  --border-color: #1E3A5F;
+}
+
+/* Feature cards 样式 */
+.feature-card {
+  @apply rounded-lg bg-[#0E2A47]/50 backdrop-blur-sm p-6 shadow-lg border border-[#1E3A5F] 
+  hover:border-[#00E5B3]/50 transition-all duration-500 relative;
+}
+
+.feature-card::before {
+  content: '';
+  @apply absolute inset-0 bg-gradient-to-br from-[#00E5B3]/0 to-[#164B7A]/0 
+  opacity-0 group-hover:opacity-20 transition-all duration-500 rounded-lg;
+}
+
+/* 动画样式 */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delay {
+  animation: float 6s ease-in-out infinite;
+  animation-delay: 3s;
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 导航链接样式 */
+.nav-link {
+  @apply text-gray-300 hover:text-[#00E5B3] px-3 py-2 text-sm font-medium relative;
+}
+
+.nav-link::after {
+  content: '';
+  @apply absolute bottom-0 left-0 w-0 h-0.5 bg-[#00E5B3] transition-all duration-300;
+}
+
+.nav-link:hover::after {
+  @apply w-full;
+}
+
+/* 其他样式保持不变 */
+</style>
