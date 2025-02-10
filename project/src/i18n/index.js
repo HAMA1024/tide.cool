@@ -1,4 +1,4 @@
-import { createI18n,useI18n } from 'vue-i18n'
+import { createI18n } from 'vue-i18n'
 import en from '../locales/en'
 import zh from '../locales/zh'
 
@@ -11,7 +11,7 @@ const getBrowserLanguage = () => {
 
 const i18n = createI18n({
   legacy: false, // 使用 Composition API 模式
-  locale: getBrowserLanguage(), // 自动检测浏览器语言
+  locale: 'en', // 设置默认语言为英文
   fallbackLocale: 'en', // 备用语言
   messages: {
     en,

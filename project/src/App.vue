@@ -23,7 +23,7 @@
               TIDE <span class="text-[#00E5B3]">X</span>
             </span>
             <!-- 语言选择器移到这里，调整尺寸 -->
-            <div class="relative ml-4">
+            <!--div class="relative ml-4">
               <select 
                 v-model="$i18n.locale" 
                 class="bg-black/80 text-[#00E5B3] rounded px-2 py-1 border border-[#00E5B3] hover:bg-[#00E5B3]/10 transition-colors duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#00E5B3]/50 appearance-none pl-7 text-sm h-8"
@@ -36,13 +36,12 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
                 </svg>
               </div>
-            </div>
+            </div-->
             <!-- 调整菜单位置 -->
             <div class="hidden md:flex md:ml-[60px] space-x-8">
               <a href="https://huangs-organization-8.gitbook.io/tide.cool" target="_blank" class="nav-link">{{ $t('nav.docs') }}</a>
-              <a href="#" class="nav-link">{{ $t('nav.channels') }}</a>
+              <a href="#" class="nav-link">{{ $t('nav.heroes') }}</a>
               <router-link to="/pricing" class="nav-link">{{ $t('nav.pricing') }}</router-link>
-              <a href="#" class="nav-link">{{ $t('nav.faq') }}</a>
               <a href @click="goToWorkspace" class="nav-link">{{ $t('nav.workspace') }}</a>
             </div>
           </div>
@@ -128,42 +127,73 @@
       <div class="features-gradient py-24 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="text-center">
-            <h2 class="text-3xl font-bold text-white">Features </h2>
-            <p class="mt-4 text-gray-300">What makes our AI Agents magnificent</p>
+            <h2 class="text-3xl font-bold text-[#00E5B3]">{{ $t('features.title') }}</h2>
+            <p class="mt-4 text-gray-300">{{ $t('features.subtitle') }}</p>
           </div>
 
           <div class="mt-20 grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
             <!-- 使用feature-card类，但移除内联style -->
             <div class="feature-card">
               <div class="relative z-10">
-                <h3 class="text-xl font-semibold text-white group-hover:text-[#00E5B3] transition-colors duration-300">
-                  {{ $t('features.cards.nlp.title') }}
+                <!-- 添加图标 -->
+                <div class="mb-4 bg-[#00E5B3] rounded-full p-3 w-26 h-26 mx-auto">
+                  <img 
+                    src="./assets/hero-athena.png" 
+                    alt="Athena" 
+                    class="w-full h-full"
+                  />
+                </div>
+                <h3 class="text-xl font-semibold font-nunito text-black group-hover:text-black transition-colors duration-300">
+                  {{ $t('features.cards.athena.title') }}
                 </h3>
-                <p class="mt-4 text-gray-300">{{ $t('features.cards.nlp.description') }}</p>
+                <p class="mt-4 text-gray-800">{{ $t('features.cards.athena.description') }}</p>
               </div>
             </div>
             <div class="feature-card">
               <div class="relative z-10">
-                <h3 class="text-xl font-semibold text-white group-hover:text-[#00E5B3] transition-colors duration-300">
-                  {{ $t('features.cards.automation.title') }}
+                <div class="mb-4 bg-[#00E5B3] rounded-full p-3 w-26 h-26 mx-auto">
+                  <img 
+                    src="./assets/hero-hermes.png" 
+                    alt="Hermes" 
+                    class="w-full h-full"
+                  />
+                </div>
+                <h3 class="text-xl font-semibold font-nunito text-black group-hover:text-black transition-colors duration-300">
+                  {{ $t('features.cards.hermes.title') }}
                 </h3>
-                <p class="mt-4 text-gray-300">{{ $t('features.cards.automation.description') }}</p>
+                <p class="mt-4 text-gray-800">{{ $t('features.cards.hermes.description') }}</p>
               </div>
             </div>
             <div class="feature-card">
               <div class="relative z-10">
-                <h3 class="text-xl font-semibold text-white group-hover:text-[#00E5B3] transition-colors duration-300">
-                  {{ $t('features.cards.learning.title') }}
+                <div class="mb-4 bg-[#00E5B3] rounded-full p-3 w-26 h-26 mx-auto">
+                  <img 
+                    src="./assets/hero-apollo.png" 
+                    alt="Apollo" 
+                    class="w-full h-full"
+                  />
+                </div>
+                <h3 class="text-xl font-semibold font-nunito text-black group-hover:text-black transition-colors duration-300">
+                  {{ $t('features.cards.apollo.title') }}
                 </h3>
-                <p class="mt-4 text-gray-300">{{ $t('features.cards.learning.description') }}</p>
+                <p class="mt-4 text-gray-800">{{ $t('features.cards.apollo.description') }}</p>
               </div>
             </div>
+            <!-- 第四张卡片 -->
             <div class="feature-card">
               <div class="relative z-10">
-                <h3 class="text-xl font-semibold text-white group-hover:text-[#00E5B3] transition-colors duration-300">
-                  {{ $t('features.cards.security.title') }}
+                <!-- 添加图标 -->
+                <div class="mb-4 bg-[#00E5B3] rounded-full p-3 w-26 h-26 mx-auto">
+                  <img 
+                    src="./assets/hero-skalds.png" 
+                    alt="Skalds" 
+                    class="w-full h-full"
+                  />
+                </div>
+                <h3 class="text-xl font-semibold font-nunito text-black group-hover:text-black transition-colors duration-300">
+                  {{ $t('features.cards.skalds.title') }}
                 </h3>
-                <p class="mt-4 text-gray-300">{{ $t('features.cards.security.description') }}</p>
+                <p class="mt-4 text-gray-800">{{ $t('features.cards.skalds.description') }}</p>
               </div>
             </div>
           </div>
@@ -305,13 +335,13 @@ const goToWorkspace = () => {
 
 /* Feature cards 样式 */
 .feature-card {
-  @apply rounded-lg bg-[#0E2A47]/50 backdrop-blur-sm p-6 shadow-lg border border-[#1E3A5F] 
-  hover:border-[#00E5B3]/50 transition-all duration-500 relative;
+  @apply rounded-lg bg-[#00E5B3]/50 p-6 shadow-lg border border-[#00E5B3] 
+  hover:bg-[#00E5B3]/60 transition-all duration-500 relative;
 }
 
 .feature-card::before {
   content: '';
-  @apply absolute inset-0 bg-gradient-to-br from-[#00E5B3]/0 to-[#164B7A]/0 
+  @apply absolute inset-0 bg-gradient-to-br from-[#00E5B3]/0 to-[#00E5B3]/0 
   opacity-0 group-hover:opacity-20 transition-all duration-500 rounded-lg;
 }
 
